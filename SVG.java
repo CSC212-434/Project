@@ -41,14 +41,15 @@ public class SVG {
 			in2.close();
 			
 			
-			String id = "";
-			String cx = "";
-			String cy = "";
-			String r = "";
-			String style = "";
+			
 			for (int i = 5; i < lines.length-1; i++) {
-				
+			
 			  if(lines[i].equals("<circle")){
+				  String id = "";
+					String cx = "";
+					String cy = "";
+					String r = "";
+					String style = "";
 				  System.out.println("circl---------------");
 				int j = i;
 				circle c;
@@ -82,12 +83,52 @@ public class SVG {
 				linkedList.insert(c);
 				
 				}else if (lines[i].equals("<rect")){
+					
+					String id = "";
+					String x = "";
+					String y = "";
+					String width = "";
+					String height = "";
+					String style = "";
 					System.out.println("rect---------------");
+					int j = i;
+					rec r;
+					for (; i < j+6 ; i++) {
+						
+						    if(lines[i].contains("id=")){
+						        for (int k = 4; k < lines[i].length()-1; k++) {
+												id +=  (lines[i].charAt(k));
+								}	
+							}else if(lines[i].contains("x=")){
+								for (int k = 4; k < lines[i].length()-1; k++) {
+												x +=  (lines[i].charAt(k));
+								}
+							}else if(lines[i].contains("y=")){
+								for (int k = 4; k < lines[i].length()-1; k++) {
+												y +=  (lines[i].charAt(k));
+								}
+							}else if(lines[i].contains("height=")){
+								for (int k = 3; k < lines[i].length()-1; k++) {
+									height +=  (lines[i].charAt(k));
+								}
+							}else if(lines[i].contains("width=")){
+								for (int k = 3; k < lines[i].length()-1; k++) {
+									width +=  (lines[i].charAt(k));
+								}
+							}else if(lines[i].contains("style=")){
+								for (int k = 7; k < lines[i].length()-1; k++) {
+												style +=  (lines[i].charAt(k));
+								}
+							}
+							
+							
+						}
+					r = new rec(y, x, height, width, width, style);
+					linkedList.insert(r);
 					
 				}
 				
 			}
-			
 			
 			return true;
 		} catch (FileNotFoundException e) {
