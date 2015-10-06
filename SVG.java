@@ -93,26 +93,26 @@ public class SVG {
 					System.out.println("rect---------------");
 					int j = i;
 					rec r;
-					for (; i < j+6 ; i++) {
+					for (; i < j+7 ; i++) {
 						
 						    if(lines[i].contains("id=")){
 						        for (int k = 4; k < lines[i].length()-1; k++) {
 												id +=  (lines[i].charAt(k));
 								}	
 							}else if(lines[i].contains("x=")){
-								for (int k = 4; k < lines[i].length()-1; k++) {
+								for (int k = 3; k < lines[i].length()-1; k++) {
 												x +=  (lines[i].charAt(k));
 								}
 							}else if(lines[i].contains("y=")){
-								for (int k = 4; k < lines[i].length()-1; k++) {
+								for (int k = 3; k < lines[i].length()-1; k++) {
 												y +=  (lines[i].charAt(k));
 								}
 							}else if(lines[i].contains("height=")){
-								for (int k = 3; k < lines[i].length()-1; k++) {
+								for (int k = 8; k < lines[i].length()-1; k++) {
 									height +=  (lines[i].charAt(k));
 								}
 							}else if(lines[i].contains("width=")){
-								for (int k = 3; k < lines[i].length()-1; k++) {
+								for (int k = 7; k < lines[i].length()-1; k++) {
 									width +=  (lines[i].charAt(k));
 								}
 							}else if(lines[i].contains("style=")){
@@ -123,7 +123,7 @@ public class SVG {
 							
 							
 						}
-					r = new rec(y, x, height, width, width, style);
+					r = new rec(y, x, height, width, id, style);
 					linkedList.insert(r);
 					
 				}
