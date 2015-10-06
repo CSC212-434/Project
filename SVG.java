@@ -28,15 +28,12 @@ public class SVG {
 			in.close();
 			lines = new String[NOL];
 			try{
-				while(true){
 					for (int i = 0; i < lines.length; i++) {
 						lines[i]=in2.nextLine();
 					}
-				}
+				
 			} catch (NoSuchElementException e ){
-				for (int i = 0; i < lines.length; i++) {
-					System.out.println(lines[i]);
-				}
+				
 			}
 			in2.close();
 			
@@ -45,7 +42,7 @@ public class SVG {
 			for (int i = 5; i < lines.length-1; i++) {
 			
 			  if(lines[i].equals("<circle")){
-				  String id = "";
+				    String id = "";
 					String cx = "";
 					String cy = "";
 					String r = "";
@@ -132,8 +129,6 @@ public class SVG {
 			
 			return true;
 		} catch (FileNotFoundException e) {
-			
-			e.printStackTrace();
 			return false;
 		}
 		
@@ -142,11 +137,54 @@ public class SVG {
 		
 		
 	}	
-	/*
+	
 	public String query(String command) {
+		
+		if(command.contains("AR")){
+			linkedList.findFirst();
+			while(linkedList.equals(null)){
+				System.out.println();
+				linkedList.findNext();
+			}
+			
+			
+			//rec r = new rec(y, x, height, width, id, style);
+			
+			
+			
+		}else if(command.contains("AC")){
+			
+		}else if(command.contains("FE")){
+			
+		}else if(command.contains("GE")){
+			
+		}else if(command.contains("SE")){
+			
+		}
+		
+		
+		return "";
 		
 		
 		
 	}	
-	*/
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
