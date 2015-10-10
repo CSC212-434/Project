@@ -134,9 +134,37 @@ public class SVG {
 		
 	}	
 	public void write(String fileName) {
+		try{
+		File f=new File("file.txt");
+		FileReader FR = new FileReader(f);
+		BufferedReader BFR = new BufferedReader(FR);
 		
+		String [] a = new String [6] ;
+		int j=0;
+		while(BFR.readLine ()!=null){
+			a[j] = BFR.readLine () ;
+			j++;
+		}
 		
-	}	
+		File fi= new File(fileName);
+		FileOutputStream FOS = new FileOutputStream (fi);
+		PrintWriter PW = new PrintWriter(FOS);
+		
+		for (int i = 0; i < 5; i++) {
+			PW.write(a[i]);
+			
+		}
+		String id = "id="
+		while(){
+			PW.Write(linkedList.retrieve());
+		}
+		}
+		catch(FileNotFoundException e){
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
 	
 	public String query(String command) {
 		
