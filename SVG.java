@@ -165,37 +165,170 @@ public class SVG {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
+	}
 	
-	public String query(String command) {
-		
-		if(command.contains("AR")){
+	
+		public String query(String command) {
+
+		String[] com = command.split(" ");
+
+		if (com[0].equals("AR")) {
+			Object tem = linkedList.retrieve();
 			linkedList.findFirst();
-			while(linkedList.equals(null)){
-				System.out.println();
+			while (!linkedList.last()) {
+				if (linkedList.retrieve() instanceof rec) {
+					if (((rec) linkedList.retrieve()).id.equals(com[1])) {
+						return "fail";
+					}
+				}
 				linkedList.findNext();
 			}
-			
-			
-			//rec r = new rec(y, x, height, width, id, style);
-			
-			
-			
-		}else if(command.contains("AC")){
-			
-		}else if(command.contains("FE")){
-			
-		}else if(command.contains("GE")){
-			
-		}else if(command.contains("SE")){
-			
+			// becuase last nude
+			if (linkedList.retrieve() instanceof rec) {
+				if (((rec) linkedList.retrieve()).id.equals(com[1])) {
+					return "fail";
+				}
+			}
+			rec r = new rec(com[3], com[2], com[4], com[5], com[1], com[6]);
+			linkedList.findFirst();
+			while (linkedList.retrieve() != tem) {
+				linkedList.findNext();
+			}
+			linkedList.insert(r);
+			return "Success";
+
+		} else if (com[0].equals("AC")) {
+
+			Object tem = linkedList.retrieve();
+			linkedList.findFirst();
+			while (!linkedList.last()) {
+				if (linkedList.retrieve() instanceof circle) {
+					if (((circle) linkedList.retrieve()).id.equals(com[1])) {
+						return "fail";
+					}
+				}
+				linkedList.findNext();
+			}
+			// becuase last nude
+			if (linkedList.retrieve() instanceof circle) {
+				if (((circle) linkedList.retrieve()).id.equals(com[1])) {
+					return "fail";
+				}
+			}
+			circle c = new circle(com[3], com[2], com[4], com[1], com[5]);
+			linkedList.findFirst();
+			while (linkedList.retrieve() != tem) {
+				linkedList.findNext();
+			}
+			linkedList.insert(c);
+			return "Success";
+
+		} else if (com[0].equals("FE")) {
+
+			linkedList.findFirst();
+			while (!linkedList.last()) {
+				if (linkedList.retrieve() instanceof rec) {
+					if (((rec) linkedList.retrieve()).id.equals(com[1])) {
+						return "Success";
+					}
+				} else if (linkedList.retrieve() instanceof circle) {
+					if (((circle) linkedList.retrieve()).id.equals(com[1])) {
+						return "Success";
+					}
+				}
+				if (linkedList.retrieve() instanceof rec) {
+					if (((rec) linkedList.retrieve()).id.equals(com[1])) {
+						return "Success";
+					}
+				} else if (linkedList.retrieve() instanceof circle) {
+					if (((circle) linkedList.retrieve()).id.equals(com[1])) {
+						return "Success";
+					}
+				}
+				return "Fail";
+			}
+		} else if (com[0].equals("GE")) {
+
+			if (linkedList.retrieve() instanceof rec) {
+				if (com[1].equals("id")) {
+					return ((rec) linkedList.retrieve()).id;
+				} else if (com[1].equals("x")) {
+					return ((rec) linkedList.retrieve()).x;
+				} else if (com[1].equals("y")) {
+					return ((rec) linkedList.retrieve()).y;
+				} else if (com[1].equals("height")) {
+					return ((rec) linkedList.retrieve()).height;
+				} else if (com[1].equals("width")) {
+					return ((rec) linkedList.retrieve()).width;
+				} else if (com[1].equals("style")) {
+					return ((rec) linkedList.retrieve()).style;
+				}
+			} else if (linkedList.retrieve() instanceof circle) {
+				if (com[1].equals("id")) {
+					return ((circle) linkedList.retrieve()).id;
+				} else if (com[1].equals("cx")) {
+					return ((circle) linkedList.retrieve()).cx;
+				} else if (com[1].equals("cy")) {
+					return ((circle) linkedList.retrieve()).cy;
+				} else if (com[1].equals("r")) {
+					return ((circle) linkedList.retrieve()).r;
+				} else if (com[1].equals("style")) {
+					return ((circle) linkedList.retrieve()).style;
+				}
+			}
+
+		} else if (com[0].equals("SE")) {
+			if (linkedList.retrieve() instanceof rec) {
+				if (com[1].equals("id")) {
+					return "Fail";
+				} else if (com[1].equals("x")) {
+					((rec) linkedList.retrieve()).setX(com[2]);
+					;
+					return "Success";
+				} else if (com[1].equals("y")) {
+					((rec) linkedList.retrieve()).setY(com[2]);
+					;
+					return "Success";
+				} else if (com[1].equals("height")) {
+					((rec) linkedList.retrieve()).setHeight(com[2]);
+					;
+					return "Success";
+				} else if (com[1].equals("width")) {
+					((rec) linkedList.retrieve()).setWidth(com[2]);
+					;
+					return "Success";
+				} else if (com[1].equals("style")) {
+					((rec) linkedList.retrieve()).setStyle(com[2]);
+					;
+					return "Success";
+				}
+			} else if (linkedList.retrieve() instanceof circle) {
+				if (com[1].equals("id")) {
+					return "Fail";
+				} else if (com[1].equals("cx")) {
+					((circle) linkedList.retrieve()).setCx(com[2]);
+					;
+					return "Success";
+				} else if (com[1].equals("cy")) {
+					((circle) linkedList.retrieve()).setCy(com[2]);
+					;
+					return "Success";
+				} else if (com[1].equals("r")) {
+					((circle) linkedList.retrieve()).setR(com[2]);
+					;
+					return "Success";
+				} else if (com[1].equals("style")) {
+					((circle) linkedList.retrieve()).setStyle(com[2]);
+					;
+					return "Success";
+				}
+			}
+
 		}
-		
-		
-		return "";
-		
-		
-		
-	}	
+
+		return "Fail";
+
+	}
 	
 }
 
