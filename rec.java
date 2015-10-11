@@ -14,6 +14,43 @@ public class rec {
 		this.style = style;
 	}
 	
+		public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getStyle() {
+		return style;
+	}
+	public void setStyle(String style) {
+		this.style = style;
+	}
+	public String getY() {
+		return y;
+	}
+	public void setY(String y) {
+		this.y = y;
+	}
+	public String getX() {
+		return x;
+	}
+	public void setX(String x) {
+		this.x = x;
+	}
+	public String getHeight() {
+		return height;
+	}
+	public void setHeight(String height) {
+		this.height = height;
+	}
+	public String getWidth() {
+		return width;
+	}
+	public void setWidth(String width) {
+		this.width = width;
+	}
+	
 	
 
 }
