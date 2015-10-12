@@ -168,25 +168,27 @@ public class SVG {
 	}
 	
 	
-		public String query(String command) {
+	public String query(String command) {
 
 		String[] com = command.split(" ");
 
-		if (com[0].equals("AR")) {
+		if (com[0].equals("AR") && isNumeric(com[1]) && isNumeric(com[2])
+				&& isNumeric(com[3]) && isNumeric(com[4]) && isNumeric(com[5])) {
+			if (!linkedList.empty()) {
 			Object tem = linkedList.retrieve();
 			linkedList.findFirst();
 			while (!linkedList.last()) {
 				if (linkedList.retrieve() instanceof rec) {
 					if (((rec) linkedList.retrieve()).id.equals(com[1])) {
-						return "fail";
+						return "Fail";
 					}
 				}
 				linkedList.findNext();
 			}
-			// becuase last nude
+			// because last node
 			if (linkedList.retrieve() instanceof rec) {
 				if (((rec) linkedList.retrieve()).id.equals(com[1])) {
-					return "fail";
+					return "Fail";
 				}
 			}
 			rec r = new rec(com[3], com[2], com[4], com[5], com[1], com[6]);
@@ -196,23 +198,25 @@ public class SVG {
 			}
 			linkedList.insert(r);
 			return "Success";
+			}
+			return "Fail";
 
-		} else if (com[0].equals("AC")) {
-
+		} else if (com[0].equals("AC") && isNumeric(com[1])
+				&& isNumeric(com[2]) && isNumeric(com[3]) && isNumeric(com[4])) {
 			Object tem = linkedList.retrieve();
 			linkedList.findFirst();
 			while (!linkedList.last()) {
 				if (linkedList.retrieve() instanceof circle) {
 					if (((circle) linkedList.retrieve()).id.equals(com[1])) {
-						return "fail";
+						return "Fail";
 					}
 				}
 				linkedList.findNext();
 			}
-			// becuase last nude
+			// because last node
 			if (linkedList.retrieve() instanceof circle) {
 				if (((circle) linkedList.retrieve()).id.equals(com[1])) {
-					return "fail";
+					return "Fail";
 				}
 			}
 			circle c = new circle(com[3], com[2], com[4], com[1], com[5]);
@@ -225,129 +229,129 @@ public class SVG {
 
 		} else if (com[0].equals("FE")) {
 
-			linkedList.findFirst();
-			while (!linkedList.last()) {
-				if (linkedList.retrieve() instanceof rec) {
-					if (((rec) linkedList.retrieve()).id.equals(com[1])) {
-						return "Success";
+			if (!linkedList.empty()) {
+				linkedList.findFirst();
+				while (!linkedList.last()) {
+					if (linkedList.retrieve() instanceof rec) {
+						if (((rec) linkedList.retrieve()).id.equals(com[1])) {
+							return "Success";
+						}
+					} else if (linkedList.retrieve() instanceof circle) {
+						if (((circle) linkedList.retrieve()).id.equals(com[1])) {
+							return "Success";
+						}
 					}
-				} else if (linkedList.retrieve() instanceof circle) {
-					if (((circle) linkedList.retrieve()).id.equals(com[1])) {
-						return "Success";
+					if (linkedList.retrieve() instanceof rec) {
+						if (((rec) linkedList.retrieve()).id.equals(com[1])) {
+							return "Success";
+						}
+					} else if (linkedList.retrieve() instanceof circle) {
+						if (((circle) linkedList.retrieve()).id.equals(com[1])) {
+							return "Success";
+						}
 					}
 				}
-				if (linkedList.retrieve() instanceof rec) {
-					if (((rec) linkedList.retrieve()).id.equals(com[1])) {
-						return "Success";
-					}
-				} else if (linkedList.retrieve() instanceof circle) {
-					if (((circle) linkedList.retrieve()).id.equals(com[1])) {
-						return "Success";
-					}
-				}
-				return "Fail";
 			}
+			
+			return "Fail";
+
 		} else if (com[0].equals("GE")) {
 
-			if (linkedList.retrieve() instanceof rec) {
-				if (com[1].equals("id")) {
-					return ((rec) linkedList.retrieve()).id;
-				} else if (com[1].equals("x")) {
-					return ((rec) linkedList.retrieve()).x;
-				} else if (com[1].equals("y")) {
-					return ((rec) linkedList.retrieve()).y;
-				} else if (com[1].equals("height")) {
-					return ((rec) linkedList.retrieve()).height;
-				} else if (com[1].equals("width")) {
-					return ((rec) linkedList.retrieve()).width;
-				} else if (com[1].equals("style")) {
-					return ((rec) linkedList.retrieve()).style;
-				}
-			} else if (linkedList.retrieve() instanceof circle) {
-				if (com[1].equals("id")) {
-					return ((circle) linkedList.retrieve()).id;
-				} else if (com[1].equals("cx")) {
-					return ((circle) linkedList.retrieve()).cx;
-				} else if (com[1].equals("cy")) {
-					return ((circle) linkedList.retrieve()).cy;
-				} else if (com[1].equals("r")) {
-					return ((circle) linkedList.retrieve()).r;
-				} else if (com[1].equals("style")) {
-					return ((circle) linkedList.retrieve()).style;
+			if (!linkedList.empty()) {
+				if (linkedList.retrieve() instanceof rec) {
+					if (com[1].equals("id")) {
+						return ((rec) linkedList.retrieve()).id;
+					} else if (com[1].equals("x")) {
+						return ((rec) linkedList.retrieve()).x;
+					} else if (com[1].equals("y")) {
+						return ((rec) linkedList.retrieve()).y;
+					} else if (com[1].equals("height")) {
+						return ((rec) linkedList.retrieve()).height;
+					} else if (com[1].equals("width")) {
+						return ((rec) linkedList.retrieve()).width;
+					} else if (com[1].equals("style")) {
+						return ((rec) linkedList.retrieve()).style;
+					}
+				} else if (linkedList.retrieve() instanceof circle) {
+					if (com[1].equals("id")) {
+						return ((circle) linkedList.retrieve()).id;
+					} else if (com[1].equals("cx")) {
+						return ((circle) linkedList.retrieve()).cx;
+					} else if (com[1].equals("cy")) {
+						return ((circle) linkedList.retrieve()).cy;
+					} else if (com[1].equals("r")) {
+						return ((circle) linkedList.retrieve()).r;
+					} else if (com[1].equals("style")) {
+						return ((circle) linkedList.retrieve()).style;
+					}
 				}
 			}
+			return "Fail";
 
 		} else if (com[0].equals("SE")) {
-			if (linkedList.retrieve() instanceof rec) {
-				if (com[1].equals("id")) {
-					return "Fail";
-				} else if (com[1].equals("x")) {
-					((rec) linkedList.retrieve()).setX(com[2]);
-					;
-					return "Success";
-				} else if (com[1].equals("y")) {
-					((rec) linkedList.retrieve()).setY(com[2]);
-					;
-					return "Success";
-				} else if (com[1].equals("height")) {
-					((rec) linkedList.retrieve()).setHeight(com[2]);
-					;
-					return "Success";
-				} else if (com[1].equals("width")) {
-					((rec) linkedList.retrieve()).setWidth(com[2]);
-					;
-					return "Success";
-				} else if (com[1].equals("style")) {
-					((rec) linkedList.retrieve()).setStyle(com[2]);
-					;
-					return "Success";
+
+			if (!linkedList.empty()) {
+				if (linkedList.retrieve() instanceof rec) {
+					if (com[1].equals("id")) {
+						return "Fail";
+					} else if (com[1].equals("x")) {
+						((rec) linkedList.retrieve()).setX(com[2]);
+						;
+						return "Success";
+					} else if (com[1].equals("y")) {
+						((rec) linkedList.retrieve()).setY(com[2]);
+						;
+						return "Success";
+					} else if (com[1].equals("height")) {
+						((rec) linkedList.retrieve()).setHeight(com[2]);
+						;
+						return "Success";
+					} else if (com[1].equals("width")) {
+						((rec) linkedList.retrieve()).setWidth(com[2]);
+						;
+						return "Success";
+					} else if (com[1].equals("style")) {
+						((rec) linkedList.retrieve()).setStyle(com[2]);
+						;
+						return "Success";
+					}
+				} else if (linkedList.retrieve() instanceof circle) {
+					if (com[1].equals("id")) {
+						return "Fail";
+					} else if (com[1].equals("cx")) {
+						((circle) linkedList.retrieve()).setCx(com[2]);
+						;
+						return "Success";
+					} else if (com[1].equals("cy")) {
+						((circle) linkedList.retrieve()).setCy(com[2]);
+						;
+						return "Success";
+					} else if (com[1].equals("r")) {
+						((circle) linkedList.retrieve()).setR(com[2]);
+						;
+						return "Success";
+					} else if (com[1].equals("style")) {
+						((circle) linkedList.retrieve()).setStyle(com[2]);
+						;
+						return "Success";
+					}
 				}
-			} else if (linkedList.retrieve() instanceof circle) {
-				if (com[1].equals("id")) {
-					return "Fail";
-				} else if (com[1].equals("cx")) {
-					((circle) linkedList.retrieve()).setCx(com[2]);
-					;
-					return "Success";
-				} else if (com[1].equals("cy")) {
-					((circle) linkedList.retrieve()).setCy(com[2]);
-					;
-					return "Success";
-				} else if (com[1].equals("r")) {
-					((circle) linkedList.retrieve()).setR(com[2]);
-					;
-					return "Success";
-				} else if (com[1].equals("style")) {
-					((circle) linkedList.retrieve()).setStyle(com[2]);
-					;
-					return "Success";
-				}
+
 			}
-
 		}
-
 		return "Fail";
 
 	}
-	
-}
 
+	public static boolean isNumeric(String str) {
+		try {
+			double d = Double.parseDouble(str);
+		} catch (NumberFormatException nfe) {
+			return false;
+		}
+		return true;
+	}
 
-
-
-
-
-public static boolean isNumeric(String str)  
-{  
-  try  
-  {  
-    double d = Double.parseDouble(str);  
-  }  
-  catch(NumberFormatException nfe)  
-  {  
-    return false;  
-  }  
-  return true;  
 }
 
 
