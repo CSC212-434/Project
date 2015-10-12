@@ -134,39 +134,73 @@ public class SVG {
 		
 	}	
 	public void write(String fileName) {
-		try{
-		File f=new File("file.txt");
-		FileReader FR = new FileReader(f);
-		BufferedReader BFR = new BufferedReader(FR);
-		
-		String [] a = new String [6] ;
-		int j=0;
-		while(BFR.readLine ()!=null){
-			a[j] = BFR.readLine () ;
-			j++;
-		}
-		
-		File fi= new File(fileName);
-		FileOutputStream FOS = new FileOutputStream (fi);
-		PrintWriter PW = new PrintWriter(FOS);
-		
-		for (int i = 0; i < 5; i++) {
-			PW.write(a[i]);
+			try{
 			
-		}
-		String id = "id="
-		while(){
-			PW.Write(linkedList.retrieve());
-		}
-		}
-		catch(FileNotFoundException e){
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
-	}
-	
+			
+			File fi= new File(fileName);
+			FileOutputStream FOS = new FileOutputStream (fi);
+			PrintWriter PW = new PrintWriter(FOS);
+			
+			PW.write("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>");
+			PW.write("<svg");
+			PW.write("width=\"800\"");
+			PW.write("height=\"600\"");
+			PW.write(">");
+			
+			linkedList.findFirst(); 
+			while(!linkedList.last()){
+			if (linkedList.retrieve() instanceof circle ) {
+				 PW.write("<circle"); 
+				 PW.write("id=\""+(((circle)linkedList.retrieve()).id)+"\"");
+				 PW.write("cx=\""+(((circle)linkedList.retrieve()).cx)+"\"");
+				 PW.write("cy=\""+(((circle)linkedList.retrieve()).cy)+"\"");
+				 PW.write("r=\""+(((circle)linkedList.retrieve()).r)+"\"");
+				 PW.write("Style=\""+(((circle)linkedList.retrieve()).style)+"\"");
+				 PW.write("/>");
+			}
+			else {
+                 PW.write("<rect");
+                 PW.write("y=\""+(((rec)linkedList.retrieve()).y)+"\"");
+				 PW.write("x=\""+(((rec)linkedList.retrieve()).x)+"\"");
+				 PW.write("height=\""+(((rec)linkedList.retrieve()).height)+"\"");
+				 PW.write("width=\""+(((rec)linkedList.retrieve()).width)+"\"");
+				 PW.write("id=\""+(((rec)linkedList.retrieve()).id)+"\"");
+				 PW.write("Style=\""+(((rec)linkedList.retrieve()).style)+"\"");
+				 PW.write("/>");
+			}
+			      	
+			} // out of while 
+			
+			if (linkedList.retrieve() instanceof circle ) {
+				 PW.write("<circle"); 
+				 PW.write("id=\""+(((circle)linkedList.retrieve()).id)+"\"");
+				 PW.write("cx=\""+(((circle)linkedList.retrieve()).cx)+"\"");
+				 PW.write("cy=\""+(((circle)linkedList.retrieve()).cy)+"\"");
+				 PW.write("r=\""+(((circle)linkedList.retrieve()).r)+"\"");
+				 PW.write("Style=\""+(((circle)linkedList.retrieve()).style)+"\"");
+				 PW.write("/>");
+			}
+			else {
+                PW.write("<rect");
+                PW.write("y=\""+(((rec)linkedList.retrieve()).y)+"\"");
+				 PW.write("x=\""+(((rec)linkedList.retrieve()).x)+"\"");
+				 PW.write("height=\""+(((rec)linkedList.retrieve()).height)+"\"");
+				 PW.write("width=\""+(((rec)linkedList.retrieve()).width)+"\"");
+				 PW.write("id=\""+(((rec)linkedList.retrieve()).id)+"\"");
+				 PW.write("Style=\""+(((rec)linkedList.retrieve()).style)+"\"");
+				 PW.write("/>");
+			}
+			
+			PW.write("</svg>"); // The end
+			PW.close();			
+			}
+			catch(FileNotFoundException e){
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			}	
 	
 	public String query(String command) {
 
